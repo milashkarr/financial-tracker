@@ -9,7 +9,7 @@ RegistrationForm::RegistrationForm(QWidget *parent)
     : QWidget(parent)
 {
     // Устанавливаем фиксированный размер окна
-    setFixedSize(450, 650);
+    setFixedSize(480, 680);
 
     // Устанавливаем заголовок окна
     setWindowTitle("Регистрация");
@@ -85,7 +85,7 @@ RegistrationForm::RegistrationForm(QWidget *parent)
     registerButton->setStyleSheet("QPushButton {"
                                   "background-color: #A4B8C4;"
                                   "color: white;"
-                                  "font-size: 14px;" // Уменьшаем размер шрифта
+                                  "font-size: 16px;" // Уменьшаем размер шрифта
                                   "border-radius: 15px;" // Уменьшаем радиус закругления
                                   "border: 2px solid #8E9EAB;"
                                   "}"

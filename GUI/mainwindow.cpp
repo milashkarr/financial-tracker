@@ -31,7 +31,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Создаем QLabel для надписи "Добро пожаловать!"
     QLabel *welcomeLabel = new QLabel("Добро пожаловать!", centralWidget);
-    QFont welcomeFont("Candara Light", 19, QFont::Bold); // Изменяем шрифт
+    QFont welcomeFont("Candara Light", 15, QFont::Bold); // Изменяем шрифт
     welcomeLabel->setFont(welcomeFont);
     welcomeLabel->setAlignment(Qt::AlignCenter); // Выравниваем по центру
     welcomeLabel->setStyleSheet("color: black; background-color: #FCFAFA;"); // Изменение стиля
@@ -50,7 +50,7 @@ MainWindow::MainWindow(QWidget *parent)
     QFont trackerFont("Calibri Light", 11, QFont::Bold); // Изменяем шрифт
     trackerLabel->setFont(trackerFont);
     trackerLabel->setAlignment(Qt::AlignCenter); // Выравниваем по центру
-    trackerLabel->setStyleSheet("color: #C8D3D5; background-color: #FCFAFA;"); // Изменение стиля
+    trackerLabel->setStyleSheet("color: #B7C6C8; background-color: #FCFAFA;"); // Изменение стиля
     mainLayout->addWidget(trackerLabel);
 
     // Создаем вертикальный layout для кнопок
