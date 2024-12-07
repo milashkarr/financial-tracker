@@ -1,5 +1,8 @@
+#include "iostream"
+
 #include "registrationform.h"
 #include "loginwindow.h" // Добавляем заголовок для LoginWindow
+#include "data_base.h"
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QMessageBox>
@@ -169,7 +172,25 @@ void RegistrationForm::onRegisterClicked()
         statusLabel->setStyleSheet("color: #0CCA4A; background-color: #FCFAFA;"); // Изменяем цвет текста
         statusLabel->show();
     } else {
-        // Здесь можно добавить логику для сохранения данных регистрации
+        DBManager dbManager("172.27.8.206", "financal_tracker", "project_user", "123");
+        dbManager.connect();
+        QString query = QString(
+                            "INSERT INTO users (name, surname, dirthday, phone_number, email, login, password) "
+                            "VALUES ('%1', '%2', '%3', '%4', '%5', '%6', '%7');"
+                            ).arg(firstName)
+                            .arg(lastName)
+                            .arg(QString("%1-%2-%3").arg(year, month, day)) // Форматирование даты как 'YYYY-MM-DD'
+                            .arg(phoneNumber)
+                            .arg(email)
+                            .arg(username)
+                            .arg(password);
+
+        if (dbManager.executeQuery(query)) {
+            std::cout << "Данные успешно вставлены.\n";
+        } else {
+            std::cout << "Ошибка при вставке данных: " << dbManager.getLastError().toStdString() << "\n";
+        }
+
         QMessageBox::information(this, "Регистрация", "Регистрация успешна!");
         statusLabel->setText("Регистрация успешна!");
         statusLabel->setStyleSheet("color: #0CCA4A; background-color: #FCFAFA;"); // Изменяем цвет текста
