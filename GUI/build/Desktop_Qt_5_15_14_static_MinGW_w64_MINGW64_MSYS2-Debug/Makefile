@@ -327,6 +327,7 @@ Makefile: ../../app_new.pro C:/msys64/mingw64/qt5-static/share/qt5/mkspecs/win32
 		C:/msys64/mingw64/qt5-static/share/qt5/mkspecs/features/qt_config.prf \
 		C:/msys64/mingw64/qt5-static/share/qt5/mkspecs/win32-g++/qmake.conf \
 		C:/msys64/mingw64/qt5-static/share/qt5/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		C:/msys64/mingw64/qt5-static/share/qt5/mkspecs/features/exclusive_builds.prf \
 		C:/msys64/mingw64/qt5-static/share/qt5/mkspecs/features/toolchain.prf \
 		C:/msys64/mingw64/qt5-static/share/qt5/mkspecs/features/default_pre.prf \
@@ -363,11 +364,12 @@ Makefile: ../../app_new.pro C:/msys64/mingw64/qt5-static/share/qt5/mkspecs/win32
 		C:/msys64/mingw64/qt5-static/share/qt5/plugins/imageformats/qtiff.prl \
 		C:/msys64/mingw64/qt5-static/share/qt5/plugins/imageformats/qwbmp.prl \
 		C:/msys64/mingw64/qt5-static/share/qt5/plugins/imageformats/qwebp.prl \
+		C:/msys64/mingw64/qt5-static/share/qt5/plugins/sqldrivers/qsqlite.prl \
 		C:/msys64/mingw64/qt5-static/lib/Qt5Widgets.prl \
 		C:/msys64/mingw64/qt5-static/lib/Qt5Gui.prl \
+		C:/msys64/mingw64/qt5-static/lib/Qt5Sql.prl \
 		C:/msys64/mingw64/qt5-static/lib/Qt5Core.prl \
 		C:/msys64/mingw64/qt5-static/lib/qtmain.prl \
-		.qmake.stash \
 		C:/msys64/mingw64/qt5-static/share/qt5/mkspecs/features/build_pass.prf
 	$(QMAKE) -o Makefile ..\..\app_new.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
 C:/msys64/mingw64/qt5-static/share/qt5/mkspecs/features/spec_pre.prf:
@@ -627,6 +629,7 @@ C:/msys64/mingw64/qt5-static/share/qt5/mkspecs/features/qt_functions.prf:
 C:/msys64/mingw64/qt5-static/share/qt5/mkspecs/features/qt_config.prf:
 C:/msys64/mingw64/qt5-static/share/qt5/mkspecs/win32-g++/qmake.conf:
 C:/msys64/mingw64/qt5-static/share/qt5/mkspecs/features/spec_post.prf:
+.qmake.stash:
 C:/msys64/mingw64/qt5-static/share/qt5/mkspecs/features/exclusive_builds.prf:
 C:/msys64/mingw64/qt5-static/share/qt5/mkspecs/features/toolchain.prf:
 C:/msys64/mingw64/qt5-static/share/qt5/mkspecs/features/default_pre.prf:
@@ -663,11 +666,12 @@ C:/msys64/mingw64/qt5-static/share/qt5/plugins/imageformats/qtga.prl:
 C:/msys64/mingw64/qt5-static/share/qt5/plugins/imageformats/qtiff.prl:
 C:/msys64/mingw64/qt5-static/share/qt5/plugins/imageformats/qwbmp.prl:
 C:/msys64/mingw64/qt5-static/share/qt5/plugins/imageformats/qwebp.prl:
+C:/msys64/mingw64/qt5-static/share/qt5/plugins/sqldrivers/qsqlite.prl:
 C:/msys64/mingw64/qt5-static/lib/Qt5Widgets.prl:
 C:/msys64/mingw64/qt5-static/lib/Qt5Gui.prl:
+C:/msys64/mingw64/qt5-static/lib/Qt5Sql.prl:
 C:/msys64/mingw64/qt5-static/lib/Qt5Core.prl:
 C:/msys64/mingw64/qt5-static/lib/qtmain.prl:
-.qmake.stash:
 C:/msys64/mingw64/qt5-static/share/qt5/mkspecs/features/build_pass.prf:
 qmake: FORCE
 	@$(QMAKE) -o Makefile ..\..\app_new.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"

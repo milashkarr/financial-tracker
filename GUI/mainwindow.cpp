@@ -39,7 +39,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Создаем QLabel для эмблемы
     QLabel *logoLabel = new QLabel(centralWidget);
-    QPixmap logoPixmap("C:/Users/Lada/Documents/modern_progremming/draft/кошелек.png"); // Путь к изображению
+    QPixmap logoPixmap("C:/Users/maksson/Pictures/кошелек.png"); // Путь к изображению
     logoLabel->setPixmap(logoPixmap.scaled(180, 180, Qt::KeepAspectRatio, Qt::SmoothTransformation)); // Масштабируем изображение
     logoLabel->setAlignment(Qt::AlignCenter); // Выравниваем по центру
     logoLabel->setStyleSheet("background-color: #FCFAFA;"); // Устанавливаем фоновый цвет
