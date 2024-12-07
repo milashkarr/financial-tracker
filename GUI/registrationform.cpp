@@ -1,6 +1,7 @@
 #include "iostream"
 
 #include "registrationform.h"
+#include "loginwindow.h" // Добавляем заголовок для LoginWindow
 #include "data_base.h"
 #include <QVBoxLayout>
 #include <QHBoxLayout>
@@ -194,5 +195,12 @@ void RegistrationForm::onRegisterClicked()
         statusLabel->setText("Регистрация успешна!");
         statusLabel->setStyleSheet("color: #0CCA4A; background-color: #FCFAFA;"); // Изменяем цвет текста
         statusLabel->show();
+
+        // Открываем окно входа
+        LoginWindow *loginWindow = new LoginWindow();
+        loginWindow->show();
+
+        // Закрываем текущее окно регистрации
+        this->close();
     }
 }

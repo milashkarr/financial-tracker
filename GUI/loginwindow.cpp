@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "loginwindow.h"
+#include "mainappwindow.h" // Добавляем заголовок для MainAppWindow
 #include "data_base.h"
 #include <QMessageBox>
 
@@ -118,6 +119,13 @@ void LoginWindow::onLoginButtonClicked() {
     }
 
     QMessageBox::information(this, "Информация", "Вы успешно авторизовались!");
+    successLabel->setText("Вы успешно авторизовались!");
+    successLabel->show();
+
+    // Открываем основное окно приложения
+    MainAppWindow *mainAppWindow = new MainAppWindow();
+    mainAppWindow->show();
+    this->close(); // Закрываем окно авторизации
 }
 
 void LoginWindow::onShowPasswordButtonClicked() {
