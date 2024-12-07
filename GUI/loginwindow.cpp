@@ -1,4 +1,7 @@
+#include <iostream>
+
 #include "loginwindow.h"
+#include "data_base.h"
 #include <QMessageBox>
 
 LoginWindow::LoginWindow(QWidget *parent) : QWidget(parent)
@@ -96,7 +99,24 @@ LoginWindow::LoginWindow(QWidget *parent) : QWidget(parent)
 }
 
 void LoginWindow::onLoginButtonClicked() {
-    // Обработка нажатия кнопки "Войти"
+    QString login = loginEdit->text();
+    QString password = passwordEdit->text();
+
+    DBManager dbManager("172.27.8.206", "financal_tracker", "project_user", "123");
+    dbManager.connect();
+
+    QString query = QString(
+            "SELECT COUNT(*) "
+            "FROM users "
+            "WHERE login = '%1' AND password = '%2';"
+        ).arg(login, password);
+
+    if (dbManager.executeQuery(query)) {
+        std::cout << "Данные успешно вставлены.\n";
+    } else {
+        std::cout << "Ошибка при вставке данных: " << dbManager.getLastError().toStdString() << "\n";
+    }
+
     QMessageBox::information(this, "Информация", "Вы успешно авторизовались!");
 }
 
