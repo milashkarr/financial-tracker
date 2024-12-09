@@ -107,25 +107,50 @@ void LoginWindow::onLoginButtonClicked() {
     dbManager.connect();
 
     QString query = QString(
-            "SELECT COUNT(*) "
-            "FROM users "
-            "WHERE login = '%1' AND password = '%2';"
-        ).arg(login, password);
+        "SELECT COUNT(*) AS count "
+        "FROM users "
+        "WHERE login = '%1' AND password = '%2';"
+    ).arg(login, password);
 
-    if (dbManager.executeQuery(query)) {
-        std::cout << "Данные успешно вставлены.\n";
+//    if (dbManager.executeQuery(query)) {
+//        std::cout << "Данные успешно вставлены.\n";
+//    } else {
+//        std::cout << "Ошибка при вставке данных: " << dbManager.getLastError().toStdString() << "\n";
+//    }
+
+    QSqlQuery result = dbManager.fetchQuery(query);
+    if (result.isActive() && result.next()) {
+        int count = result.value("count").toInt(); // Получаем значение из колонки "count"
+        if (count > 0) {
+            // Пользователь найден
+            std::cout << "Пользователь авторизован.\n";
+
+            QMessageBox::information(this, "Информация", "Вы успешно авторизовались!");
+            successLabel->setText("Вы успешно авторизовались!");
+            successLabel->show();
+
+            // Открываем основное окно приложения
+            MainAppWindow *mainAppWindow = new MainAppWindow();
+            mainAppWindow->show();
+            this->close(); // Закрываем окно авторизации
+        } else {
+            // Пользователь не найден
+            QMessageBox::warning(this, "Ошибка", "Неверный логин или пароль!");
+        }
     } else {
-        std::cout << "Ошибка при вставке данных: " << dbManager.getLastError().toStdString() << "\n";
+        // Ошибка при выполнении запроса
+        QMessageBox::warning(this, "Ошибка", "Произошла ошибка при выполнении запроса!");
+        std::cerr << "Ошибка при выполнении запроса: " << dbManager.getLastError().toStdString() << "\n";
     }
 
-    QMessageBox::information(this, "Информация", "Вы успешно авторизовались!");
-    successLabel->setText("Вы успешно авторизовались!");
-    successLabel->show();
+//    QMessageBox::information(this, "Информация", "Вы успешно авторизовались!");
+//    successLabel->setText("Вы успешно авторизовались!");
+//    successLabel->show();
 
-    // Открываем основное окно приложения
-    MainAppWindow *mainAppWindow = new MainAppWindow();
-    mainAppWindow->show();
-    this->close(); // Закрываем окно авторизации
+//    // Открываем основное окно приложения
+//    MainAppWindow *mainAppWindow = new MainAppWindow();
+//    mainAppWindow->show();
+//    this->close(); // Закрываем окно авторизации
 }
 
 void LoginWindow::onShowPasswordButtonClicked() {
