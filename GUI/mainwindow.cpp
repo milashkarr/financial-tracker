@@ -7,6 +7,7 @@
 #include <QDebug>
 #include <QFont>
 #include <QGraphicsDropShadowEffect>
+#include "primarybutton.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -58,7 +59,7 @@ MainWindow::MainWindow(QWidget *parent)
     buttonLayout->setAlignment(Qt::AlignCenter); // Выравниваем кнопки по центру
 
     // Создаем кнопки "Войти" и "Регистрация"
-    QPushButton *loginButton = new QPushButton("Войти", centralWidget);
+    PrimaryButton *loginButton = new PrimaryButton("Войти", centralWidget);
     QPushButton *registerButton = new QPushButton("Регистрация", centralWidget);
 
     // Устанавливаем фиксированный размер для кнопок
@@ -67,31 +68,18 @@ MainWindow::MainWindow(QWidget *parent)
     loginButton->setFixedSize(buttonWidth, buttonHeight);
     registerButton->setFixedSize(buttonWidth, buttonHeight);
 
-    // Изменение стилей кнопок для прямоугольных кнопок с гладкими углами и тенями
-    QString buttonStyle = "QPushButton {"
-                          "background-color: #A4B8C4;"
-                          "color: white;"
-                          "font-size: 16px;"
-                          "border-radius: 20px;"
-                          "border: 2px solid #8E9EAB;"
-                          "}"
-                          "QPushButton:hover {"
-                          "background-color: #8E9EAB;"
-                          "}";
-    loginButton->setStyleSheet(buttonStyle);
-
     // Изменение стилей кнопок для овальных кнопок с тенями
-    buttonStyle = "QPushButton {"
-                  "background-color: #6E8387;"
-                  "color: white;"
-                  "font-size: 16px;"
-                  "border-radius: 20px;"
-                  "border: 2px solid #5A6E72;"
-                  "}"
-                  "QPushButton:hover {"
-                  "background-color: #5A6E72;"
-                  "}";
-    registerButton->setStyleSheet(buttonStyle);
+    QString registerButtonStyle = "QPushButton {"
+                                  "background-color: #6E8387;"
+                                  "color: white;"
+                                  "font-size: 16px;"
+                                  "border-radius: 20px;"
+                                  "border: 2px solid #5A6E72;"
+                                  "}"
+                                  "QPushButton:hover {"
+                                  "background-color: #5A6E72;"
+                                  "}";
+    registerButton->setStyleSheet(registerButtonStyle);
 
     // Добавляем кнопки в вертикальный layout
     buttonLayout->addWidget(loginButton);

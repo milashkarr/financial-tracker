@@ -4,6 +4,7 @@
 #include "mainappwindow.h" // Добавляем заголовок для MainAppWindow
 #include "data_base.h"
 #include <QMessageBox>
+#include "primarybutton.h"
 
 LoginWindow::LoginWindow(QWidget *parent) : QWidget(parent)
 {
@@ -61,18 +62,8 @@ LoginWindow::LoginWindow(QWidget *parent) : QWidget(parent)
     loginMainLayout->addWidget(showPasswordButton);
 
     // Создаем кнопку "Войти"
-    loginButton = new QPushButton("Войти", this);
+    loginButton = new PrimaryButton("Войти", this);
     loginButton->setFixedSize(150, 40);
-    loginButton->setStyleSheet( "QPushButton {"
-                               "background-color: #A4B8C4;"
-                               "color: white;"
-                               "font-size: 16px;"
-                               "border-radius: 20px;"
-                               "border: 2px solid #8E9EAB;"
-                               "}"
-                               "QPushButton:hover {"
-                               "background-color: #8E9EAB;"
-                               "}");
 
     // Добавляем тень к кнопке
     QGraphicsDropShadowEffect *shadowEffect = new QGraphicsDropShadowEffect(this);
@@ -107,16 +98,10 @@ void LoginWindow::onLoginButtonClicked() {
     dbManager.connect();
 
     QString query = QString(
-        "SELECT COUNT(*) AS count "
-        "FROM users "
-        "WHERE login = '%1' AND password = '%2';"
-    ).arg(login, password);
-
-//    if (dbManager.executeQuery(query)) {
-//        std::cout << "Данные успешно вставлены.\n";
-//    } else {
-//        std::cout << "Ошибка при вставке данных: " << dbManager.getLastError().toStdString() << "\n";
-//    }
+                        "SELECT COUNT(*) AS count "
+                        "FROM users "
+                        "WHERE login = '%1' AND password = '%2';"
+                        ).arg(login, password);
 
     QSqlQuery result = dbManager.fetchQuery(query);
     if (result.isActive() && result.next()) {
@@ -142,15 +127,6 @@ void LoginWindow::onLoginButtonClicked() {
         QMessageBox::warning(this, "Ошибка", "Произошла ошибка при выполнении запроса!");
         std::cerr << "Ошибка при выполнении запроса: " << dbManager.getLastError().toStdString() << "\n";
     }
-
-//    QMessageBox::information(this, "Информация", "Вы успешно авторизовались!");
-//    successLabel->setText("Вы успешно авторизовались!");
-//    successLabel->show();
-
-//    // Открываем основное окно приложения
-//    MainAppWindow *mainAppWindow = new MainAppWindow();
-//    mainAppWindow->show();
-//    this->close(); // Закрываем окно авторизации
 }
 
 void LoginWindow::onShowPasswordButtonClicked() {

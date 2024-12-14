@@ -1,6 +1,6 @@
 #include "mainappwindow.h"
-#include "expenseswindow.h" // Добавляем заголовок для ExpensesWindow
-#include "incomewindow.h" // Добавляем заголовок для IncomeWindow
+#include "expenseswindow.h"
+#include "incomewindow.h"
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QPushButton>
@@ -9,6 +9,7 @@
 #include <QListWidget>
 #include <QMessageBox>
 #include <QMenu>
+#include "primarybutton.h"
 
 MainAppWindow::MainAppWindow(QWidget *parent)
     : QWidget(parent), balance(0.0)
@@ -82,34 +83,12 @@ void MainAppWindow::setupUI()
     buttonLayout->setSpacing(20);
 
     // Создаем кнопку "Расходы"
-    expensesButton = new QPushButton("Расходы", this);
+    expensesButton = new PrimaryButton("Расходы", this);
     expensesButton->setFixedSize(150, 40);
-    expensesButton->setStyleSheet("QPushButton {"
-                                  "background-color: #A4B8C4;"
-                                  "color: white;"
-                                  "font-size: 16px;"
-                                  "border-radius: 20px;"
-                                  "border: 2px solid #8E9EAB;"
-                                  "}"
-                                  "QPushButton:hover {"
-                                  "background-color: #8E9EAB;"
-                                  "}");
-    connect(expensesButton, &QPushButton::clicked, this, &MainAppWindow::onExpensesButtonClicked);
 
     // Создаем кнопку "Доходы"
-    incomeButton = new QPushButton("Доходы", this);
+    incomeButton = new PrimaryButton("Доходы", this);
     incomeButton->setFixedSize(150, 40);
-    incomeButton->setStyleSheet("QPushButton {"
-                                "background-color: #A4B8C4;"
-                                "color: white;"
-                                "font-size: 16px;"
-                                "border-radius: 20px;"
-                                "border: 2px solid #8E9EAB;"
-                                "}"
-                                "QPushButton:hover {"
-                                "background-color: #8E9EAB;"
-                                "}");
-    connect(incomeButton, &QPushButton::clicked, this, &MainAppWindow::onIncomeButtonClicked);
 
     buttonLayout->addWidget(expensesButton);
     buttonLayout->addWidget(incomeButton);

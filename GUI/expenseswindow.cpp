@@ -1,11 +1,12 @@
 #include "expenseswindow.h"
-#include "mainappwindow.h" // Добавляем заголовок для MainAppWindow
+#include "mainappwindow.h"
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QRadioButton>
 #include <QPushButton>
 #include <QMessageBox>
+#include "primarybutton.h"
 
 ExpensesWindow::ExpensesWindow(MainAppWindow *mainAppWindow, QWidget *parent)
     : QWidget(parent), mainAppWindow(mainAppWindow)
@@ -84,18 +85,9 @@ void ExpensesWindow::setupUI()
     mainLayout->addLayout(dateLayout);
 
     // Создаем кнопку "Сохранить"
-    saveButton = new QPushButton("Сохранить", this);
+    saveButton = new PrimaryButton("Сохранить", this);
     saveButton->setFixedSize(150, 40);
-    saveButton->setStyleSheet("QPushButton {"
-                              "background-color: #A4B8C4;"
-                              "color: white;"
-                              "font-size: 16px;"
-                              "border-radius: 20px;"
-                              "border: 2px solid #8E9EAB;"
-                              "}"
-                              "QPushButton:hover {"
-                              "background-color: #8E9EAB;"
-                              "}");
+
     mainLayout->addWidget(saveButton, 0, Qt::AlignCenter);
 
     // Устанавливаем отступы и интервалы
